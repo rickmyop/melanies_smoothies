@@ -1,6 +1,7 @@
 # Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col
+import requests
 
 
 # Write directly to the app
@@ -14,6 +15,11 @@ st.title(f"""
 cnx = st.connection("snowflake")
 session = cnx.session()
 
+# name section
+name_on_order = st.text_input('Name on order:')
+st.write(f"The name on your order will be: {name_on_order}")
+
+# selection section
 my_dataframe = session.table("smoothies.public.fruit_options")
 my_dataframe = my_dataframe.select(col('FRUIT_NAME'))
 
@@ -27,6 +33,7 @@ ingredient_list = st.multiselect(
 
 name_on_order = st.text_input('Name')
 st.write(f"The name on your order will be: {name_on_order}")
+
 
 if ingredient_list:
     # st.write(ingredient_list)
