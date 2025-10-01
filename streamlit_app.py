@@ -35,7 +35,6 @@ ingredient_list = st.multiselect(
     , my_dataframe
     , max_selections=5
 )
-st.stop()
 
 if ingredient_list:
 
