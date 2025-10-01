@@ -42,9 +42,14 @@ if ingredient_list:
     for ingredient in ingredient_list:
         st.title(f'{ingredient} Nutrition Information')
 
-
+        search_on_sql = f"""
+        select search_on
+        from smoothies.public.fruit_options
+        where fruit_name = '{ingredient}'
+        """
+        search_on = session.sql(search_on_sql).collect()[0][0]
         smoothiefroot_response = requests.get(
-            f"https://my.smoothiefroot.com/api/fruit/{ingredient}"
+            f"https://my.smoothiefroot.com/api/fruit/{search_on}"
         )
         st_df = st.dataframe(
             data=smoothiefroot_response.json(),
