@@ -31,11 +31,17 @@ ingredient_list = st.multiselect(
     , max_selections=5
 )
 
-name_on_order = st.text_input('Name')
-st.write(f"The name on your order will be: {name_on_order}")
-
 
 if ingredient_list:
+
+    smoothiefroot_response = requests.get(
+        "https://my.smoothiefroot.com/api/fruit/watermelon"
+    )
+    nut_df = st.dataframe(
+        data=st.text(smoothiefroot_response.json()),
+        use_container_width=True
+    )
+    
     # st.write(ingredient_list)
     ingredient_str = ' '.join(ingredient_list)
     # st.write(ingredient_str)
