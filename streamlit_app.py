@@ -39,7 +39,7 @@ if ingredient_list:
     )
     st.text(smoothiefroot_response.json())
     st_df = st.dataframe(
-        data=st.text(smoothiefroot_response.json()),
+        data=smoothiefroot_response.json(),
         use_container_width=True
     )
 
