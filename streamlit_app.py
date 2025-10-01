@@ -10,13 +10,9 @@ st.title(f"""
     :cup_with_straw:
 """)
 
-# option =st.selectbox(
-#     'xxx', 
-#     ('a', 'b')
-# )
-# st.write('You selected', option)
 
-session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 my_dataframe = session.table("smoothies.public.fruit_options")
 my_dataframe = my_dataframe.select(col('FRUIT_NAME'))
@@ -50,6 +46,3 @@ if ingredient_list:
         # st.write(my_insert_stmt)
         session.sql(my_insert_stmt).collect()
         st.success(f'Your Smoothie is ordered, {name_on_order}!', icon="✅")
-
-        cnx = st.connection("snowflake")
-        session = cnx.session()
