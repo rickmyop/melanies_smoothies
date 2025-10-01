@@ -37,7 +37,7 @@ if ingredient_list:
     for ingredient in ingredient_list:
         st.write(f'You selected {ingredient}')
         smoothiefroot_response = requests.get(
-            f"https://my.smoothiefroot.com/api/fruit/{ingredient}"
+            f"https://my.smoothiefroot.com/api/fruit/{ingredient.lower()}"
         )
         st.text(smoothiefroot_response.json())
         st_df = st.dataframe(
