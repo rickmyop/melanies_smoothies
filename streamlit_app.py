@@ -23,9 +23,10 @@ st.write(f"The name on your order will be: {name_on_order}")
 # selection section
 my_dataframe = session.table("smoothies.public.fruit_options")
 my_dataframe = my_dataframe.select(col('FRUIT_NAME'), col('search_on'))
+
 my_df = my_dataframe.to_pandas()
-st.dataframe(data=my_df)
-st.stop()
+# st.dataframe(data=my_df)
+# st.stop()
 
 # st.dataframe(data=my_dataframe, use_container_width=True)
 
@@ -34,7 +35,7 @@ ingredient_list = st.multiselect(
     , my_dataframe
     , max_selections=5
 )
-
+st.stop()
 
 if ingredient_list:
 
