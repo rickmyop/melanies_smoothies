@@ -37,14 +37,9 @@ if ingredient_list:
     smoothiefroot_response = requests.get(
         "https://my.smoothiefroot.com/api/fruit/watermelon"
     )
-    nut_df = st.dataframe(
-        data=st.text(smoothiefroot_response.json()),
-        use_container_width=True
-    )
+    st.text(smoothiefroot_response.json())
     
-    # st.write(ingredient_list)
     ingredient_str = ' '.join(ingredient_list)
-    # st.write(ingredient_str)
 
     my_insert_stmt = f"""
         insert into
